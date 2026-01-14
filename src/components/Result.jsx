@@ -18,7 +18,7 @@ export default function Result({ liked, onRestart, isRestarting }) {
       <button
         onClick={onRestart}
         disabled={isRestarting}
-        className="mt-6 px-6 py-2 rounded-lg bg-indigo-600 disabled:opacity-50"
+        className="mt-6 px-3 py-2 rounded-md bg-neutral-900 text-white text-sm hover:bg-neutral-800"
       >
         {isRestarting ? "Loading…" : "Start Again"}
       </button>

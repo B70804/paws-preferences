@@ -3,7 +3,7 @@ import CatCard from "./CatCard";
 
 export default function CardStack({ cats, onSwipe, refs }) {
   return (
-    <div className="relative w-80 h-[420px]">
+    <div className="relative w-[320px] h-[420px] sm:w-[360px] sm:h-[480px] lg:w-[420px] lg:h-[520px]">
       {cats.map((cat, index) => (
         <TinderCard
           key={cat}
@@ -18,3 +18,4 @@ export default function CardStack({ cats, onSwipe, refs }) {
     </div>
   );
 }
+
