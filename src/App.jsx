@@ -94,12 +94,6 @@ export default function App() {
               </div>
             </div>
           </div>
-
-          {/* <nav className="hidden sm:flex items-center gap-6 text-sm text-neutral-600">
-            <a className="hover:text-neutral-900" href="#deck">Deck</a>
-            <a className="hover:text-neutral-900" href="#liked">Liked</a>
-            <a className="hover:text-neutral-900" href="#about">About</a>
-          </nav> */}
         </div>
       </header>
 
@@ -110,12 +104,11 @@ export default function App() {
         {/* Main column */}
         <section>
           <div className="mb-6">
-            <h1 className="text-3xl font-semibold tracking-tight">
+            <h1 className="text-3xl text-center font-semibold tracking-tight">
               Find Your Favourite Cat
             </h1>
-            <p className="mt-2 text-neutral-600 max-w-2xl">
-              Swipe right to like. Swipe left to skip. Use undo if you changed
-              your mind.
+            <p className="mt-2 text-center text-neutral-600">
+              Like it? Swipe right. Not feeling it? Swipe left. You can always undo.
             </p>
           </div>
 
@@ -128,8 +121,8 @@ export default function App() {
 
             {!isLoading && cardsLeft > 0 && (
               <div className="flex flex-col items-center gap-6 max-w-md mx-auto">
-                {/* CARD */}
-                <div className="w-full flex justify-center">
+                {/* Card */}
+                <div className="w-full flex justify-center mb-4">
                   <CardStack
                     cats={cats}
                     onSwipe={swiped}
@@ -137,13 +130,13 @@ export default function App() {
                   />
                 </div>
 
-                {/* PROGRESS */}
+                {/* Progress bar */}
                 <ProgressBar
                   current={cats.length - cardsLeft}
                   total={cats.length}
                 />
 
-                {/* ACTION BUTTONS */}
+                {/* Buttons */}
                 <Controls
                   onUndo={undo}
                   onRestart={() => loadCats(true)}
@@ -161,52 +154,6 @@ export default function App() {
             )}
           </div>
         </section>
-
-        {/* Sidebar
-        <aside className="space-y-6">
-          <div id="liked" className="rounded-xl border border-neutral-200 bg-white shadow-sm p-5">
-            <div className="flex items-baseline justify-between">
-              <h2 className="font-semibold">Liked</h2>
-              <span className="text-xs text-neutral-500">{liked.length} total</span>
-            </div>
-
-            {liked.length === 0 ? (
-              <p className="mt-3 text-sm text-neutral-600">
-                No likes yet — swipe right on a cat to add it here.
-              </p>
-            ) : (
-              <div className="mt-4 grid grid-cols-3 gap-2">
-                {liked.slice().reverse().slice(0, 9).map((cat) => (
-                  <img
-                    key={cat}
-                    src={cat}
-                    alt="Liked cat"
-                    className="aspect-square w-full rounded-md object-cover border border-neutral-200"
-                    loading="lazy"
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-
-          <div id="about" className="rounded-xl border border-neutral-200 bg-white shadow-sm p-5">
-            <h2 className="font-semibold">About</h2>
-            <p className="mt-3 text-sm text-neutral-600 leading-relaxed">
-              This is a single-page web application built with React. It fetches random cat images
-              and lets you like/skip with swipe gestures.
-            </p>
-
-            <ul className="mt-4 text-sm text-neutral-700 list-disc pl-5 space-y-1">
-              <li>Swipe right = like</li>
-              <li>Swipe left = skip</li>
-              <li>Undo restores the last swiped card</li>
-            </ul>
-
-            <div className="mt-4 text-xs text-neutral-500">
-              Images from Cataas.
-            </div>
-          </div>
-        </aside> */}
       </div>
 
       <footer className="border-t border-neutral-200 bg-white">
