@@ -106,7 +106,7 @@ export default function App() {
       {showHeart && <SwipeEffect />}
 
       {/* Page content */}
-      <div className="mx-auto max-w-6xl px-4 py-8 grid gap-8">
+      <div className="mx-auto max-w-6xl px-4 py-6 grid gap-8">
         {/* Main column */}
         <section>
           <div className="mb-6">
@@ -127,49 +127,28 @@ export default function App() {
             )}
 
             {!isLoading && cardsLeft > 0 && (
-              <div className="grid gap-6 lg:grid-cols-[460px_1fr] items-start">
-                {/* LEFT: Deck */}
-                <div className="lg:sticky lg:top-24">
-                  <div className="flex justify-center lg:justify-start">
-                    <CardStack
-                      cats={cats}
-                      onSwipe={swiped}
-                      refs={childRefs.current}
-                    />
-                  </div>
+              <div className="flex flex-col items-center gap-6 max-w-md mx-auto">
+                {/* CARD */}
+                <div className="w-full flex justify-center">
+                  <CardStack
+                    cats={cats}
+                    onSwipe={swiped}
+                    refs={childRefs.current}
+                  />
                 </div>
 
-                {/* RIGHT: Panels */}
-                <div className="space-y-4">
-                  <div className="rounded-xl border border-neutral-200 bg-white shadow-sm p-4">
-                    <div className="text-sm text-neutral-600">Progress</div>
-                    <div className="mt-2">
-                      <ProgressBar
-                        current={cats.length - cardsLeft}
-                        total={cats.length}
-                      />
-                    </div>
-                  </div>
+                {/* PROGRESS */}
+                <ProgressBar
+                  current={cats.length - cardsLeft}
+                  total={cats.length}
+                />
 
-                  <div className="rounded-xl border border-neutral-200 bg-white shadow-sm p-4">
-                    <div className="text-sm text-neutral-600">Actions</div>
-                    <Controls
-                      onUndo={undo}
-                      onRestart={() => loadCats(true)}
-                      canUndo={history.canUndo}
-                    />
-                  </div>
-
-                  <div className="rounded-xl border border-neutral-200 bg-white shadow-sm p-4">
-                    <div className="text-sm font-medium">Liked so far</div>
-                    <div className="mt-2 text-2xl font-semibold">
-                      {liked.length}
-                    </div>
-                    <div className="mt-1 text-xs text-neutral-500">
-                      You'll see a gallery after all cats.
-                    </div>
-                  </div>
-                </div>
+                {/* ACTION BUTTONS */}
+                <Controls
+                  onUndo={undo}
+                  onRestart={() => loadCats(true)}
+                  canUndo={history.canUndo}
+                />
               </div>
             )}
 

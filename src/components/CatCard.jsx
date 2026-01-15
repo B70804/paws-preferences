@@ -32,9 +32,9 @@ function SwipeHint() {
           viewBox="0 0 1000 1000"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          enable-background="new 0 0 1000 1000"
-          xml:space="preserve"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+          enableBackground="new 0 0 1000 1000"
+          xmlSpace="preserve"
           className="size-6"
         >
           <g>
@@ -77,25 +77,37 @@ function SwipeHint() {
 export default function CatCard({ src, offset = 0 }) {
   return (
     <div
-      className="relative w-full h-full rounded-2xl shadow-xl bg-gray-800 overflow-hidden"
-      style={{
-        transform: `
-          scale(${1 - offset * 0.04})
-          translateY(${offset * 10}px)
-        `,
-        opacity: offset > 3 ? 0 : 1,
-        pointerEvents: offset === 0 ? "auto" : "none",
-      }}
+      className="
+        w-full h-full
+        transition-transform duration-200 will-change-transform
+        hover:-translate-y-1 hover:drop-shadow-2xl
+        active:translate-y-0 active:scale-[0.99]
+      "
+      style={{ pointerEvents: offset === 0 ? "auto" : "none" }}
     >
-      <img
-        src={src}
-        draggable={false}
-        alt="Cat"
-        className="w-full h-full object-cover"
-      />
+      <div
+        className="relative w-full h-full rounded-2xl shadow-xl bg-gray-800 overflow-hidden"
+        style={{
+          transform: `
+            scale(${1 - offset * 0.04})
+            translateY(${offset * 10}px)
+          `,
+          opacity: offset > 3 ? 0 : 1,
+        }}
+      >
+        <img
+          src={src}
+          draggable={false}
+          alt="Cat"
+          className="w-full h-full object-cover select-none"
+        />
 
-      {/* Hint only on the top card */}
-      {offset === 0 && <SwipeHint />}
+        {offset === 0 && (
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/45 to-transparent" />
+        )}
+
+        {offset === 0 && <SwipeHint />}
+      </div>
     </div>
   );
 }
